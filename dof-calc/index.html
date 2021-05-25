@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
 
     <title>DoF Calculator</title>
   </head>
@@ -15,60 +16,62 @@
 		<h2>Depth of Field Calculator</h2>
 		<form>
 			<div class="row mb-3">
-				<label for="focalLength" class="col-sm-2 col-form-label">Focal length, mm</label>
-				<div class="col-sm-2">
-					<input type="text" id="focalLength" class="form-control">	
-					<div id="focalLengthInvalid" class="form-text text-danger d-none">Invalid focal length</div>
+				<label for="focalLengthSelect" class="col-sm-2 col-form-label">Focal length, mm</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<select id="focalLengthSelect" class="form-select">
+							<option value="17" selected>17</option>
+							<option value="20">20</option>
+							<option value="28">28</option>
+							<option value="35">35</option>
+							<option value="55">55</option>
+						</select>
+						<button class="btn btn-outline-secondary" type="button" id="btnInputFocalLength"><i class="bi bi-pencil"></i></button>
+					</div>		
+					<div id="focalLengthInvalid" class="form-text text-danger d-none">Invalid value</div>
 				</div>
-				<div class="col-sm-1">
-					<select id="focalLengthSelect" class="form-select">
-						<option selected>>>></option>
-						<option value="17">17</option>
-						<option value="20">20</option>
-						<option value="28">28</option>
-						<option value="35">35</option>
-						<option value="55">55</option>
-					</select>				
-				</div>
-			</div>
+			</div>					
 			<div class="row mb-3">
-				<label for="apperture" class="col-sm-2 col-form-label">Apperture</label>
-				<div class="col-sm-2">
-					<input type="text" id="apperture" class="form-control">
-					<div id="appertureInvalid" class="form-text text-danger d-none">Invalid apperture</div>
-				</div>
-				<div class="col-sm-1">
-					<select id="appertureSelect" class="form-select">
-						<option selected>>>></option>
-						<option value="2.8">2.8</option>
-						<option value="3.2">3.2</option>
-						<option value="3.5">3.5</option>
-						<option value="4">4</option>
-						<option value="4.5">4.5</option>
-						<option value="5">5</option>
-						<option value="5.6">5.6</option>
-						<option value="6.3">6.3</option>
-						<option value="7.1">7.1</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="13">13</option>
-						<option value="14">14</option>
-						<option value="16">16</option>
-						<option value="18">18</option>
-						<option value="20">20</option>
-						<option value="22">22</option>
-					</select>				
-				</div>
+				<label for="appertureSelect" class="col-sm-2 col-form-label">Apperture</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<select id="appertureSelect" class="form-select">
+							<option value="2.8" selected>2.8</option>
+							<option value="3.2">3.2</option>
+							<option value="3.5">3.5</option>
+							<option value="4">4</option>
+							<option value="4.5">4.5</option>
+							<option value="5">5</option>
+							<option value="5.6">5.6</option>
+							<option value="6.3">6.3</option>
+							<option value="7.1">7.1</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="16">16</option>
+							<option value="18">18</option>
+							<option value="20">20</option>
+							<option value="22">22</option>
+						</select>		
+						<button class="btn btn-outline-secondary" type="button" id="btnInputApperture"><i class="bi bi-pencil"></i></button>						
+					</div>
+					<div id="appertureInvalid" class="form-text text-danger d-none">Invalid value</div>
+				</div>				
 			</div>
 			<div class="row mb-3">	
-				<label for="coc" class="col-sm-2 col-form-label">Circle of confusion, mm</label>
-				<div class="col-sm-2">
-					<select id="coc" class="form-select">
-						<option value="0.019" selected>0.019</option>
-						<option value="0.03">0.03</option>
-					</select>
+				<label for="cocSelect" class="col-sm-2 col-form-label">Circle of Confusion, mm</label>
+				<div class="col-sm-3">
+					<div class="input-group">
+						<select id="cocSelect" class="form-select">
+							<option value="0.019" selected>0.019</option>
+							<option value="0.03">0.03</option>
+						</select>
+						<button class="btn btn-outline-secondary" type="button" id="btnInputCoc"><i class="bi bi-pencil"></i></button>
+					</div>
+					<div id="cocInvalid" class="form-text text-danger d-none">Invalid value</div>
 				</div>				
 			</div>	
 			<div class="row mb-3">
@@ -81,7 +84,25 @@
 			<button type="button" id="btnCalc" class="btn btn-primary">Calculate</button>			
 		</form>
 		<hr>
-		<div class="col-sm-8 d-none" id="result">
+		<div class="col-sm-4 d-none result">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Focal length, mm</th>
+						<td id="focalLength"></td>
+					</tr>	
+					<tr>
+						<th>Apperture</th>
+						<td id="apperture"></td>
+					</tr>	
+					<tr>
+						<th>Circle of Confusion</th>
+						<td id="coc"></td>
+					</tr>
+				</thead>
+			</table>		
+		</div>
+		<div class="col-sm-8 d-none result">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
