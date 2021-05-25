@@ -6,16 +6,6 @@ $(document).ready(function() {
 		}
 	}
 	
-	$('#focalLengthSelect').change(function() {
-		var selectVal = $(this).val();
-		$('#focalLength').val(selectVal == '>>>' ? '' : selectVal);
-	});
-	 
-	$('#appertureSelect').change(function() {
-		var selectVal = $(this).val();
-		$('#apperture').val(selectVal == '>>>' ? '' : selectVal);
-	});
-	
 	$('#btnCalc').click(function() {
 		if (!checkFormValidity()) {
 			return;
@@ -26,15 +16,38 @@ $(document).ready(function() {
 		var coc = getCoc();
 		var focusDistanceList = getFocusDistanceList();
 		
+		renderInputData(focalLength, apperture, coc);
 		renderDof(focalLength, apperture, coc, focusDistanceList);
 		renderHyperFocal(focalLength, apperture, coc);
-		$('#result').removeClass('d-none');
+		$('.result').removeClass('d-none');
+	});
+	
+	$('#btnInputFocalLength').click(function() {
+		var newFocalLength = prompt('Input focal length (mm)');
+		if (newFocalLength != null && newFocalLength != '') {
+			$('#focalLengthSelect').append($('<option>', {value: newFocalLength, text: newFocalLength, selected: true}));	
+		}
+	});
+	
+	$('#btnInputApperture').click(function() {
+		var newApperture = prompt('Input apperture');
+		if (newApperture != null && newApperture != '') {
+			$('#appertureSelect').append($('<option>', {value: newApperture, text: newApperture, selected: true}));	
+		}
+	});
+	
+	$('#btnInputCoc').click(function() {
+		var newCoc = prompt('Input Circle of Confusion (mm)');
+		if (newCoc != null && newCoc != '') {
+			$('#cocSelect').append($('<option>', {value: newCoc, text: newCoc, selected: true}));	
+		}
 	});
 	
 	function checkFormValidity() {
 		var checkConditions = [
 			['#focalLengthInvalid', getFocalLength],
 			['#appertureInvalid', getApperture],
+			['#cocInvalid', getCoc],
 			['#focusDistanceListInvalid', getFocusDistanceList]
 		];
 		var result = true;
@@ -58,7 +71,7 @@ $(document).ready(function() {
 	}
 	
 	function getFocalLength() {
-		var val = parseInt($('#focalLength').val());
+		var val = parseInt($('#focalLengthSelect').val());
 		if (Number.isNaN(val)) {
 			throw new ValidationError('Invalid focal length');
 		}
@@ -66,7 +79,7 @@ $(document).ready(function() {
 	}
 	
 	function getApperture() {
-		var val = parseFloat($('#apperture').val());
+		var val = parseFloat($('#appertureSelect').val().replace(',', '.'));
 		if (Number.isNaN(val)) {
 			throw new ValidationError('Invalid apperture');
 		}		
@@ -74,7 +87,11 @@ $(document).ready(function() {
 	}
 	
 	function getCoc() {
-		return parseFloat($('#coc').val());
+		var val = parseFloat($('#cocSelect').val().replace(',', '.'));
+		if (Number.isNaN(val)) {
+			throw new ValidationError('Invalid Circle of Confusion');
+		}		
+		return val;		
 	}
 	
 	function getFocusDistanceList() {
@@ -82,7 +99,7 @@ $(document).ready(function() {
 		var distanceList = [];
 		
 		$.each(splitted, function (index, value) {
-			var floatValue = parseFloat(value);
+			var floatValue = parseFloat(value.replace(',', '.'));
 			if (Number.isNaN(floatValue)) {
 				throw new ValidationError('Invalid focus distance');
 			}
@@ -92,9 +109,14 @@ $(document).ready(function() {
 		return distanceList;
 	}
 	
+	function renderInputData(focalLength, apperture, coc) {
+		$('#focalLength').text(focalLength);
+		$('#apperture').text(apperture);
+		$('#coc').text(coc);
+	}
+	
 	function renderDof(focalLength, apperture, coc, focusDistanceList) {
 		$('#dofTable').empty();
-		debugger;
 		$.each(focusDistanceList, function (index, focusDistance) {
 			var dof = dofCalculate(focusDistance, focalLength, apperture, coc);
 			
