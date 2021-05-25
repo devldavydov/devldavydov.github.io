@@ -1,6 +1,5 @@
-# devldavydov.github.io
-Some web pages
-https://devldavydov.github.io
+## Index
+https://devldavydov.github.io/
 
-## dof-calc
-Depth of Field calculator for cameras
+## Depth of Field calculator for cameras
+https://devldavydov.github.io/dof-calc
