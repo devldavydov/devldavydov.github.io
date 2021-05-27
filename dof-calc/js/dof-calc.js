@@ -12,13 +12,13 @@ $(document).ready(function() {
 		}
 		
 		var focalLength = getFocalLength();
-		var apperture = getApperture();
+		var aperture = getAperture();
 		var coc = getCoc();
 		var focusDistanceList = getFocusDistanceList();
 		
-		renderInputData(focalLength, apperture, coc);
-		renderDof(focalLength, apperture, coc, focusDistanceList);
-		renderHyperFocal(focalLength, apperture, coc);
+		renderInputData(focalLength, aperture, coc);
+		renderDof(focalLength, aperture, coc, focusDistanceList);
+		renderHyperFocal(focalLength, aperture, coc);
 		$('.result').removeClass('d-none');
 	});
 	
@@ -29,10 +29,10 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#btnInputApperture').click(function() {
-		var newApperture = prompt('Input apperture');
-		if (newApperture != null && newApperture != '') {
-			$('#appertureSelect').append($('<option>', {value: newApperture, text: newApperture, selected: true}));	
+	$('#btnInputAperture').click(function() {
+		var newAperture = prompt('Input aperture');
+		if (newAperture != null && newAperture != '') {
+			$('#apertureSelect').append($('<option>', {value: newAperture, text: newAperture, selected: true}));
 		}
 	});
 	
@@ -46,7 +46,7 @@ $(document).ready(function() {
 	function checkFormValidity() {
 		var checkConditions = [
 			['#focalLengthInvalid', getFocalLength],
-			['#appertureInvalid', getApperture],
+			['#apertureInvalid', getAperture],
 			['#cocInvalid', getCoc],
 			['#focusDistanceListInvalid', getFocusDistanceList]
 		];
@@ -78,10 +78,10 @@ $(document).ready(function() {
 		return val;
 	}
 	
-	function getApperture() {
-		var val = parseFloat($('#appertureSelect').val().replace(',', '.'));
+	function getAperture() {
+		var val = parseFloat($('#apertureSelect').val().replace(',', '.'));
 		if (Number.isNaN(val)) {
-			throw new ValidationError('Invalid apperture');
+			throw new ValidationError('Invalid aperture');
 		}		
 		return val;
 	}
@@ -109,16 +109,16 @@ $(document).ready(function() {
 		return distanceList;
 	}
 	
-	function renderInputData(focalLength, apperture, coc) {
+	function renderInputData(focalLength, aperture, coc) {
 		$('#focalLength').text(focalLength);
-		$('#apperture').text(apperture);
+		$('#aperture').text(aperture);
 		$('#coc').text(coc);
 	}
 	
-	function renderDof(focalLength, apperture, coc, focusDistanceList) {
+	function renderDof(focalLength, aperture, coc, focusDistanceList) {
 		$('#dofTable').empty();
 		$.each(focusDistanceList, function (index, focusDistance) {
-			var dof = dofCalculate(focusDistance, focalLength, apperture, coc);
+			var dof = dofCalculate(focusDistance, focalLength, aperture, coc);
 			
 			var dofRow = $('<tr>');
 			dofRow.append($('<td>').text(focusDistance));
@@ -129,18 +129,18 @@ $(document).ready(function() {
 		});
 	}
 	
-	function renderHyperFocal(focalLength, apperture, coc) {
-		var hyperFocal = hyperFocalCalculate(focalLength, apperture, coc);
+	function renderHyperFocal(focalLength, aperture, coc) {
+		var hyperFocal = hyperFocalCalculate(focalLength, aperture, coc);
 		$('#hyperFocal').text(hyperFocal[0]);
 		$('#hyperFocal2').text(hyperFocal[1]);
 	}
 	
-	function dofCalculate(focusDistance, focalLength, apperture, circleOfConfusion) {
+	function dofCalculate(focusDistance, focalLength, aperture, circleOfConfusion) {
 		// https://ru.wikipedia.org/wiki/%D0%93%D0%BB%D1%83%D0%B1%D0%B8%D0%BD%D0%B0_%D1%80%D0%B5%D0%B7%D0%BA%D0%BE_%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D0%BC%D0%BE%D0%B3%D0%BE_%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%B0		
 		var f = focalLength * 0.001;
 		var f2 = Math.pow(f, 2);
 		var R = focusDistance;
-		var K = apperture;
+		var K = aperture;
 		var z = circleOfConfusion * 0.001;
 		
 		var Rf2 = R * f2;
@@ -153,10 +153,10 @@ $(document).ready(function() {
 		return [R1.toFixed(2), R2 < 0 ? 'inf' : R2.toFixed(2), R2 < 0 ? 'inf' : (R2 - R1).toFixed(2)];
 	}
 	
-	function hyperFocalCalculate(focalLength, apperture, circleOfConfusion) {
+	function hyperFocalCalculate(focalLength, aperture, circleOfConfusion) {
 		var f = focalLength * 0.001;
 		var f2 = Math.pow(f, 2);
-		var K = apperture;
+		var K = aperture;
 		var z = circleOfConfusion * 0.001;
 		
 		var H = f2 / (K * z) + f;
