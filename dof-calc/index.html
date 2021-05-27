@@ -1,139 +1,145 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap-icons.css" rel="stylesheet">
 
     <title>DoF Calculator</title>
-  </head>
-  <body>
-    <div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<form class="container-fluid justify-content-start">
-				<a href="/dof-calc/index.html" class="btn btn-primary me-2">DoF Calc</a>
-				<a href="/dof-graph/index.html" class="btn btn-outline-primary me-2">DoF Graph</a>
-			</form>
-		</nav>
-		<h2>Depth of Field Calculator</h2>
-		<form>
-			<div class="row mb-3">
-				<label for="focalLengthSelect" class="col-sm-2 col-form-label">Focal length, mm</label>
-				<div class="col-sm-3">
-					<div class="input-group">
-						<select id="focalLengthSelect" class="form-select">
-							<option value="17" selected>17</option>
-							<option value="20">20</option>
-							<option value="28">28</option>
-							<option value="35">35</option>
-							<option value="55">55</option>
-						</select>
-						<button class="btn btn-outline-secondary" type="button" id="btnInputFocalLength"><i class="bi bi-pencil"></i></button>
-					</div>		
-					<div id="focalLengthInvalid" class="form-text text-danger d-none">Invalid value</div>
-				</div>
-			</div>					
-			<div class="row mb-3">
-				<label for="apertureSelect" class="col-sm-2 col-form-label">Aperture</label>
-				<div class="col-sm-3">
-					<div class="input-group">
-						<select id="apertureSelect" class="form-select">
-							<option value="2.8" selected>2.8</option>
-							<option value="3.2">3.2</option>
-							<option value="3.5">3.5</option>
-							<option value="4">4</option>
-							<option value="4.5">4.5</option>
-							<option value="5">5</option>
-							<option value="5.6">5.6</option>
-							<option value="6.3">6.3</option>
-							<option value="7.1">7.1</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="16">16</option>
-							<option value="18">18</option>
-							<option value="20">20</option>
-							<option value="22">22</option>
-						</select>		
-						<button class="btn btn-outline-secondary" type="button" id="btnInputAperture"><i class="bi bi-pencil"></i></button>
-					</div>
-					<div id="apertureInvalid" class="form-text text-danger d-none">Invalid value</div>
-				</div>				
-			</div>
-			<div class="row mb-3">	
-				<label for="cocSelect" class="col-sm-2 col-form-label">Circle of Confusion, mm</label>
-				<div class="col-sm-3">
-					<div class="input-group">
-						<select id="cocSelect" class="form-select">
-							<option value="0.019" selected>0.019</option>
-							<option value="0.03">0.03</option>
-						</select>
-						<button class="btn btn-outline-secondary" type="button" id="btnInputCoc"><i class="bi bi-pencil"></i></button>
-					</div>
-					<div id="cocInvalid" class="form-text text-danger d-none">Invalid value</div>
-				</div>				
-			</div>	
-			<div class="row mb-3">
-				<label for="focusDistanceList" class="col-sm-2 col-form-label">Focus distance, m</label>
-				<div class="col-sm-3">
-					<input type="text" id="focusDistanceList" class="form-control" value="0.5;1;1.5;2;3;4;5;6;7;8;9;10;15;20">
-					<div id="focusDistanceListInvalid" class="form-text text-danger d-none">Invalid focus distance list</div>
-				</div>
-			</div>
-			<button type="button" id="btnCalc" class="btn btn-primary">Calculate</button>			
-		</form>
-		<hr>
-		<div class="col-sm-4 d-none result">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Focal length, mm</th>
-						<td id="focalLength"></td>
-					</tr>	
-					<tr>
-						<th>Aperture</th>
-						<td id="aperture"></td>
-					</tr>	
-					<tr>
-						<th>Circle of Confusion</th>
-						<td id="coc"></td>
-					</tr>
-				</thead>
-			</table>		
-		</div>
-		<div class="col-sm-8 d-none result">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>HyperFocal, m</th>
-						<td id="hyperFocal"></td>
-					</tr>
-					<tr>
-						<th>HyperFocal / 2, m</th>
-						<td id="hyperFocal2"></td>
-					</tr>					
-					<tr>
-						<th>Focus distance, m</th>
-						<th>DoF near, m</th>
-						<th>DoF far, m</th>
-						<th>DoF, m</th>
-					</tr>
-				</thead>
-				<tbody id="dofTable">
-				</tbody>
-			</table>
-		</div>		
-	</div>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+            <a href="/dof-calc/index.html" class="btn btn-primary me-2">DoF Calc</a>
+            <a href="/dof-graph/index.html" class="btn btn-outline-primary me-2">DoF Graph</a>
+        </form>
+    </nav>
+    <h2>Depth of Field Calculator</h2>
+    <form>
+        <div class="row mb-3">
+            <label for="focalLengthSelect" class="col-sm-2 col-form-label">Focal length, mm</label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <select id="focalLengthSelect" class="form-select">
+                        <option value="17" selected>17</option>
+                        <option value="20">20</option>
+                        <option value="28">28</option>
+                        <option value="35">35</option>
+                        <option value="55">55</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="btnInputFocalLength"><i
+                            class="bi bi-pencil"></i></button>
+                </div>
+                <div id="focalLengthInvalid" class="form-text text-danger d-none">Invalid value</div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="apertureSelect" class="col-sm-2 col-form-label">Aperture</label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <select id="apertureSelect" class="form-select">
+                        <option value="2.8" selected>2.8</option>
+                        <option value="3.2">3.2</option>
+                        <option value="3.5">3.5</option>
+                        <option value="4">4</option>
+                        <option value="4.5">4.5</option>
+                        <option value="5">5</option>
+                        <option value="5.6">5.6</option>
+                        <option value="6.3">6.3</option>
+                        <option value="7.1">7.1</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="btnInputAperture"><i
+                            class="bi bi-pencil"></i></button>
+                </div>
+                <div id="apertureInvalid" class="form-text text-danger d-none">Invalid value</div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="cocSelect" class="col-sm-2 col-form-label">Circle of Confusion, mm</label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <select id="cocSelect" class="form-select">
+                        <option value="0.019" selected>0.019</option>
+                        <option value="0.03">0.03</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="btnInputCoc"><i
+                            class="bi bi-pencil"></i></button>
+                </div>
+                <div id="cocInvalid" class="form-text text-danger d-none">Invalid value</div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="focusDistanceList" class="col-sm-2 col-form-label">Focus distance, m</label>
+            <div class="col-sm-3">
+                <input type="text" id="focusDistanceList" class="form-control"
+                       value="0.5;1;1.5;2;3;4;5;6;7;8;9;10;15;20">
+                <div id="focusDistanceListInvalid" class="form-text text-danger d-none">Invalid focus distance list
+                </div>
+            </div>
+        </div>
+        <button type="button" id="btnCalc" class="btn btn-primary">Calculate</button>
+    </form>
+    <hr>
+    <div class="col-sm-4 d-none result">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Focal length, mm</th>
+                <td id="focalLength"></td>
+            </tr>
+            <tr>
+                <th>Aperture</th>
+                <td id="aperture"></td>
+            </tr>
+            <tr>
+                <th>Circle of Confusion</th>
+                <td id="coc"></td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="col-sm-8 d-none result">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>HyperFocal, m</th>
+                <td id="hyperFocal"></td>
+            </tr>
+            <tr>
+                <th>HyperFocal / 2, m</th>
+                <td id="hyperFocal2"></td>
+            </tr>
+            <tr>
+                <th>Focus distance, m</th>
+                <th>DoF near, m</th>
+                <th>DoF far, m</th>
+                <th>DoF, m</th>
+            </tr>
+            </thead>
+            <tbody id="dofTable">
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="js/dof-calc.js"></script>
-  </body>
+<script src="../js/jquery/jquery-3.6.0.min.js"></script>
+<script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="js/dof-calc.js"></script>
+</body>
 </html>

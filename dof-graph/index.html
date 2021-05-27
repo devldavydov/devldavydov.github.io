@@ -1,25 +1,44 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap/bootstrap-icons.css" rel="stylesheet">
 
-        <title>DoF Graph</title>
-    </head>
-    <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <form class="container-fluid justify-content-start">
-                <a href="/dof-calc/index.html" class="btn btn-outline-primary me-2">DoF Calc</a>
-                <a href="/dof-graph/index.html" class="btn btn-primary me-2">DoF Graph</a>
-            </form>
-        </nav>
-        <h2>Depth of Field Graph</h2>
-    </div>
-    </body>
+    <title>DoF Graph</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+            <a href="/dof-calc/index.html" class="btn btn-outline-primary me-2">DoF Calc</a>
+            <a href="/dof-graph/index.html" class="btn btn-primary me-2">DoF Graph</a>
+        </form>
+    </nav>
+    <h2>Depth of Field Graph</h2>
+    <form>
+        <div class="row mb-3">
+            <div class="col-sm-5">
+                <label for="focalLength" class="form-label">Focal length: <span id="focalLength"></span>mm</label>
+                <input type="range" class="form-range" value="0" min="0" max="4" id="focalLengthIndex">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-5">
+                <label for="aperture" class="form-label">Aperture: <span id="aperture"></span></label>
+                <input type="range" class="form-range" value="0" min="0" max="18" id="apertureIndex">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="../js/jquery/jquery-3.6.0.min.js"></script>
+<script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="js/dof-graph.js"></script>
+</body>
 </html>
