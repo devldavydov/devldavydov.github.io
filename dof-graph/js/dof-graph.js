@@ -14,6 +14,9 @@ $(document).ready(function() {
     $(document).on('input', '#focalLengthIndex', setFocalLength);
     $(document).on('input', '#apertureIndex', setAperture);
 
+    $('#focalLengthIndex').attr({max: FOCAL_LENGTH_DATA.length});
+    $('#apertureIndex').attr({max: APERTURE_DATA.length});
+
     setFocalLength();
     setAperture();
 });
