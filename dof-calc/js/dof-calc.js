@@ -105,7 +105,8 @@ $(document).ready(function() {
 			}
 			distanceList.push(floatValue);
 		});
-		
+
+		distanceList.sort((a, b) => a - b);
 		return distanceList;
 	}
 	
