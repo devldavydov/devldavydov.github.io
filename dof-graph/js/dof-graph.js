@@ -68,7 +68,22 @@ $(document).ready(function() {
                 }
             ]
           },
-          options: {}
+          options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Focus distance, m'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'DoF, m'
+                    }
+                }
+            }
+          }
         }
     );
 
