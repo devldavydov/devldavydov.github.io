@@ -33,11 +33,21 @@
                 <input type="range" class="form-range" value="0" min="0" max="0" id="apertureIndex">
             </div>
         </div>
+        <div class="row mb-3">
+            <div class="col-sm-5">
+                <label for="coc" class="form-label">Coc: <span id="coc"><i class="bi bi-arrow-repeat"></i></span>mm</label>
+                <input type="range" class="form-range" value="0" min="0" max="0" id="cocIndex">
+            </div>
+        </div>
     </form>
+    <div class="row">
+        <canvas id="dofGraph"></canvas>
+    </div>
 </div>
 
 <script src="../js/jquery/jquery-3.6.0.min.js"></script>
 <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../js/chartjs/chart-3.3.0.min.js"></script>
 <script src="../js/common.js"></script>
 <script src="js/dof-graph.js"></script>
 </body>
