@@ -117,7 +117,8 @@ $(document).ready(function() {
 	}
 	
 	function renderDof(focalLength, aperture, coc, focusDistanceList) {
-		$('#dofTable').empty();
+	    var dofTable = $('#dofTable');
+		dofTable.empty();
 		$.each(focusDistanceList, function (index, focusDistance) {
 			var dof = dofCalculate(focusDistance, focalLength, aperture, coc);
 			
@@ -126,7 +127,7 @@ $(document).ready(function() {
 			dofRow.append($('<td>').text(dof[0]));
 			dofRow.append($('<td>').text(dof[1]));
 			dofRow.append($('<td>').text(dof[2]));
-			$('#dofTable').append(dofRow);
+			dofTable.append(dofRow);
 		});
 	}
 	
@@ -135,4 +136,21 @@ $(document).ready(function() {
 		$('#hyperFocal').text(hyperFocal[0]);
 		$('#hyperFocal2').text(hyperFocal[1]);
 	}
+
+    function loadList(dataList, formItem) {
+        $.each(dataList, function (index, value) {
+            formItem.append($('<option>', {value: value, text: value}));
+        });
+        formItem.find('option:first').remove();
+    }
+
+	function loadForm() {
+	    $('#focusDistanceList').val(FOCUS_DISTANCE_DATA.join(';'));
+
+	    loadList(FOCAL_LENGTH_DATA, $('#focalLengthSelect'));
+	    loadList(APERTURE_DATA, $('#apertureSelect'));
+	    loadList(COC_DATA, $('#cocSelect'));
+	}
+
+	loadForm();
 });
