@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="../../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
+
+    <title>DoF Table</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+            <a href="/dof/dof-table/index.html" class="btn btn-primary me-2">DoF Table</a>
+            <a href="/dof/dof-graph/index.html" class="btn btn-outline-primary me-2">DoF Graph</a>
+        </form>
+    </nav>
+    <h2>Depth of Field Table</h2>
+    <form>
+        <div class="row mb-3">
+            <label for="focalLengthSelect" class="col-sm-2 col-form-label">Focal length, mm</label>
+            <div class="col-sm-3">
+                <select id="focalLengthSelect" class="form-select">
+                    <option value="" selected>Loading...</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th rowspan="2" class="table-cell">Aperture</th>
+                <th colspan="0" class="table-cell" id="hdrFocusDistance">Focus distance, m</th>
+            </tr>
+            <tr id="hdrFocusDistanceVals">
+            </tr>
+        </thead>
+        <tbody id="tableData">
+        </tbody>
+    </table>
+</div>
+
+<script src="../../js/jquery/jquery-3.6.0.min.js"></script>
+<script src="../../js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="js/dof-table.js"></script>
+</body>
+</html>
