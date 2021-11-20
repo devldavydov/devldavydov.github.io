@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var showNote = false;
+
     function drawNote(clef, note, accidental=null) {
         VF = Vex.Flow;
 
@@ -38,15 +40,20 @@ $(document).ready(function() {
         var accidental = ACCIDENTALS[Math.floor(Math.random() * ACCIDENTALS.length)]
         $('#noteAnswer').text('Что это за нота?');
         $('#noteAnswer').attr('note', getNoteText(note, accidental));
+        $('#btnNote').text('Показать ответ');
         drawNote(clef, note, accidental);
+        showNote = true;
     }
 
-    $('#btnNextNote').click(function() {
-        initTraining();
-    });
-
-    $('#btnShowAnswer').click(function() {
-        $('#noteAnswer').text($('#noteAnswer').attr('note'));
+    $('#btnNote').click(function() {
+        debugger;
+        if (!showNote) {
+            initTraining();
+        } else {
+            $('#noteAnswer').text($('#noteAnswer').attr('note'));
+            $('#btnNote').text('Следующая нота');
+            showNote = false;
+        }
     });
 
     initTraining();

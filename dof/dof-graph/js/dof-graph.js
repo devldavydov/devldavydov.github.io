@@ -53,14 +53,14 @@ $(document).ready(function() {
             labels: FOCUS_DISTANCE_DATA,
             datasets: [
                 {
-                  label: 'DoF Near',
+                  label: 'ГРИП ближний',
                   fill: false,
                   borderColor: '#0b5ed7',
                   data: [],
                   cubicInterpolationMode: 'monotone'
                 },
                 {
-                  label: 'DoF Far',
+                  label: 'ГРИП дальний',
                   fill: false,
                   borderColor: '#dc3545',
                   data: [],
@@ -73,13 +73,13 @@ $(document).ready(function() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Focus distance, m'
+                        text: 'Дистанция фокусировки, м'
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'DoF, m'
+                        text: 'ГРИП, м'
                     }
                 }
             }
