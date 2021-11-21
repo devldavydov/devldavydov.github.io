@@ -20,11 +20,64 @@
         </form>
     </nav>
     <h2>Нотный тренажер</h2>
-    <div id="note"></div>
-    <div class="mb-2" id="noteAnswer"></div>
-    <button type="button" class="btn btn-primary" style="width: 200px;" id="btnNote">Показать ответ</button>
-    <br>
-    <a href="/note-trainer/notes.svg" target="_blank">Нотный справочник</a>
+    <div id="setup">
+        <form>
+            <div class="form-group">
+                <label>Выберите тип тренировки:</label>
+                <hr style="width: 200px">
+                <div class="form-check">
+                    <input class="form-check-input treble-check" type="checkbox" checked="checked" id="treble.0">
+                    <label class="form-check-label" for="treble.0">Скрипичный ключ, Малая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input treble-check" type="checkbox" checked="checked" id="treble.1">
+                    <label class="form-check-label" for="treble.1">Скрипичный ключ, Первая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input treble-check" type="checkbox" checked="checked" id="treble.2">
+                    <label class="form-check-label" for="treble.2">Скрипичный ключ, Вторая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input treble-check" type="checkbox" checked="checked" id="treble.3">
+                    <label class="form-check-label" for="treble.3">Скрипичный ключ, Третья октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input treble-check" type="checkbox" checked="checked" id="treble.4">
+                    <label class="form-check-label" for="treble.4">Скрипичный ключ, Четвертая октава (одна нота До)</label>
+                </div>
+                <hr style="width: 200px">
+                <div class="form-check">
+                    <input class="form-check-input bass-check" type="checkbox" checked="checked" id="bass.0">
+                    <label class="form-check-label" for="bass.0">Басовый ключ, Контроктава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bass-check" type="checkbox" checked="checked" id="bass.1">
+                    <label class="form-check-label" for="bass.1">Басовый ключ, Большая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bass-check" type="checkbox" checked="checked" id="bass.2">
+                    <label class="form-check-label" for="bass.2">Басовый ключ, Малая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bass-check" type="checkbox" checked="checked" id="bass.3">
+                    <label class="form-check-label" for="bass.3">Басовый ключ, Первая октава</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bass-check" type="checkbox" checked="checked" id="bass.4">
+                    <label class="form-check-label" for="bass.4">Басовый ключ, Вторая октава (одна нота До)</label>
+                </div>
+                <hr style="width: 200px">
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary" style="width: 200px;" id="btnStart"><i class="bi bi-music-note"></i> Старт <i class="bi bi-music-note"></i></button>
+    </div>
+    <div id="training" style="display: none">
+        <div id="note"></div>
+        <div class="mb-2" id="noteAnswer"></div>
+        <button type="button" class="btn btn-primary" style="width: 200px;" id="btnNote">Показать ответ</button>
+        <br>
+        <a href="/note-trainer/notes.svg" target="_blank">Нотный справочник</a>
+    </div>
 </div>
 
 <script src="../js/jquery/jquery-3.6.0.min.js"></script>
