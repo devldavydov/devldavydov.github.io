@@ -2,6 +2,7 @@ $(document).ready(function() {
     var showNote = false;
     var totalNotes = {'treble': [], 'bass': []};
     var totalClefs = [];
+    var totalAccidental = false;
 
     function drawNote(clef, note, accidental=null) {
         VF = Vex.Flow;
@@ -40,7 +41,7 @@ $(document).ready(function() {
         $('#note').empty();
         var clef = totalClefs[Math.floor(Math.random() * totalClefs.length)];
         var note = totalNotes[clef][Math.floor(Math.random() * totalNotes[clef].length)];
-        var accidental = ACCIDENTALS[Math.floor(Math.random() * ACCIDENTALS.length)]
+        var accidental = totalAccidental ? ACCIDENTALS[Math.floor(Math.random() * ACCIDENTALS.length)] : null;
         $('#noteAnswer').text('Что это за нота?');
         $('#noteAnswer').attr('note', getNoteText(note, accidental));
         $('#btnNote').text('Показать ответ');
@@ -77,8 +78,11 @@ $(document).ready(function() {
             return;
         }
 
+        totalAccidental = $('.accidental-check').is(':checked');
+
         console.log('Total clefs: ' + JSON.stringify(totalClefs));
         console.log('Total notes: ' + JSON.stringify(totalNotes));
+        console.log('Total accidental: ' + JSON.stringify(totalAccidental));
 
         $('#setup').hide();
         $('#training').show();
